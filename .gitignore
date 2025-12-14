@@ -1,0 +1,28 @@
+# Secrets
+.env
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Laravel runtime
+/storage/**
+!/storage/app/.gitignore
+!/storage/framework/.gitignore
+!/storage/logs/.gitignore
+
+/bootstrap/cache/**
+!/bootstrap/cache/.gitignore
+
+# Docker runtime data
+/docker/data/
+/docker/data/**
+
+# Logs
+*.log
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
