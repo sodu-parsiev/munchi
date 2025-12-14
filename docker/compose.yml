@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:
-      - /storage/www/app:/var/www/html
+      - ../:/var/www/html
     depends_on:
       - db
 
@@ -16,8 +16,8 @@ services:
     ports:
       - "127.0.0.1:8080:80"
     volumes:
-      - /storage/www/app:/var/www/html:ro
-      - /storage/www/app/docker/nginx:/etc/nginx/conf.d:ro
+      - ../:/var/www/html:ro
+      - ./nginx:/etc/nginx/conf.d:ro
     depends_on:
       - app
 
@@ -30,5 +30,5 @@ services:
       MYSQL_PASSWORD: laravel
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - /storage/www/app/docker/data/mysql:/var/lib/mysql
-      - /storage/www/app/docker/mysql/conf.d:/etc/mysql/conf.d:ro
+      - ./data/mysql:/var/lib/mysql
+      - ./mysql/conf.d:/etc/mysql/conf.d:ro
