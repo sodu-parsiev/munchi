@@ -1,0 +1,47 @@
+name: Deploy to server
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (needed only for actions/checkout context, not for build)
+        uses: actions/checkout@v4
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Add host to known_hosts
+        run: |
+          ssh-keyscan -H 72.62.2.119 >> ~/.ssh/known_hosts
+
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 72.62.2.119
+          username: app
+          script: |
+            set -e
+            cd /storage/www/app
+            git fetch origin master
+            git checkout master
+            git pull origin master
+
+            cd docker
+            docker compose up -d --build
+
+            docker compose exec app composer install --no-dev --optimize-autoloader
+            docker compose exec app npm install
+            docker compose exec app npm run build
+
+            # First deploy only: uncomment if APP_KEY not set
+            # docker compose exec app php artisan key:generate
+
+            docker compose exec app php artisan migrate --force
+            docker compose exec app php artisan config:clear
+            docker compose exec app php artisan cache:clear
