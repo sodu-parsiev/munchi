@@ -31,6 +31,7 @@ jobs:
           script: |
             set -e
             cd /storage/www/app
+            cd /storage/www/app
             git fetch origin master
             git checkout master
             git pull origin master
@@ -38,13 +39,23 @@ jobs:
             cd docker
             docker compose up -d --build
 
-            docker compose exec app composer install --no-dev --optimize-autoloader
-            docker compose exec app npm install
-            docker compose exec app npm run build
+            # Composer via official image (no PHP/Composer on host needed)
+            docker run --rm \
+            -v /storage/www/app:/app \
+            -w /app \
+            composer:2 \
+            install --no-dev --optimize-autoloader
 
-            # First deploy only: uncomment if APP_KEY not set
-            # docker compose exec app php artisan key:generate
+            # Node build via official image
+            docker run --rm \
+            -v /storage/www/app:/app \
+            -w /app \
+            node:20-alpine \
+            sh -c "npm ci && npm run build"
 
+            # Laravel tasks in app container
             docker compose exec app php artisan migrate --force
             docker compose exec app php artisan config:clear
             docker compose exec app php artisan cache:clear
+
+
