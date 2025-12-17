@@ -27,6 +27,7 @@ jobs:
         with:
           host: 72.62.2.119
           username: app
+          key: ${{ secrets.SSH_KEY }}
           script: |
             set -e
             cd /storage/www/app
