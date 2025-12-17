@@ -31,7 +31,6 @@ jobs:
           script: |
             set -e
             cd /storage/www/app
-            cd /storage/www/app
             git fetch origin master
             git checkout master
             git pull origin master
@@ -39,23 +38,13 @@ jobs:
             cd docker
             docker compose up -d --build
 
-            # Composer via official image (no PHP/Composer on host needed)
-            docker run --rm \
-            -v /storage/www/app:/app \
-            -w /app \
-            composer:2 \
-            install --no-dev --optimize-autoloader
+            docker run --rm -v /storage/www/app:/app -w /app composer:2 install --no-dev --optimize-autoloader
 
-            # Node build via official image
-            docker run --rm \
-            -v /storage/www/app:/app \
-            -w /app \
-            node:20-alpine \
-            sh -c "npm ci && npm run build"
+            docker run --rm -v /storage/www/app:/app -w /app node:20-alpine sh -c "npm install && npm run build"
 
-            # Laravel tasks in app container
             docker compose exec app php artisan migrate --force
             docker compose exec app php artisan config:clear
             docker compose exec app php artisan cache:clear
+
 
 
