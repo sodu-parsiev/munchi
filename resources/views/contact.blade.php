@@ -5,52 +5,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact - Munchi</title>
   <meta name="robots" content="index,follow" />
-  <style>
-    :root { color-scheme: light dark; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.55; }
-    .wrap { max-width: 800px; margin: 0 auto; padding: 24px 16px 64px; }
-    header { padding: 8px 0 18px; border-bottom: 1px solid rgba(127,127,127,.25); }
-    h1 { font-size: 28px; margin: 0 0 6px; }
-    .meta { opacity: .8; margin: 0; }
-    h2 { font-size: 18px; margin: 22px 0 10px; }
-    p, label { font-size: 15px; }
-    .card { border: 1px solid rgba(127,127,127,.25); border-radius: 12px; padding: 16px; margin: 16px 0; }
-    .row { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    input, textarea, button {
-      width: 100%;
-      font-size: 15px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(127,127,127,.35);
-      background: transparent;
-      color: inherit;
-    }
-    textarea { resize: vertical; min-height: 120px; }
-    button {
-      cursor: pointer;
-      font-weight: 600;
-      border: 1px solid rgba(127,127,127,.45);
-    }
-    footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid rgba(127,127,127,.25); opacity: .85; font-size: 13px; }
-    a { color: inherit; }
-  </style>
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+  @vite('resources/css/public.css')
 </head>
 
 <body>
-  <main class="wrap">
+  <main class="wrap wrap-narrow">
     <header>
       <h1>Contact</h1>
       <p class="meta"><strong>Munchi</strong> (munchiapp.co)</p>
     </header>
 
-    <section class="card">
+    <section class="card card-block">
       <p>
         If you have questions, need support, or want to report an issue, you can contact us using the information below.
         We aim to respond as soon as possible.
       </p>
     </section>
 
-    <section class="card">
+    <section class="card card-block">
       <h2 style="margin-top:0;">Contact details</h2>
       <p>
         <strong>Email:</strong>
@@ -62,7 +36,7 @@
       </p>
     </section>
 
-    <section class="card">
+    <section class="card card-block">
       <h2 style="margin-top:0;">Send us a message</h2>
       <!-- Replace action with your Laravel route if you enable the form -->
       <form method="post" action="#" novalidate>

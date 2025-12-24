@@ -5,20 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Terms of Service - Munchi</title>
   <meta name="robots" content="index,follow" />
-  <style>
-    :root { color-scheme: light dark; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.55; }
-    .wrap { max-width: 900px; margin: 0 auto; padding: 24px 16px 64px; }
-    header { padding: 8px 0 18px; border-bottom: 1px solid rgba(127,127,127,.25); }
-    h1 { font-size: 28px; margin: 0 0 6px; }
-    .meta { opacity: .8; margin: 0; }
-    h2 { font-size: 18px; margin: 22px 0 10px; }
-    p, li { font-size: 15px; }
-    ul { margin: 8px 0 0 18px; padding: 0; }
-    .card { border: 1px solid rgba(127,127,127,.25); border-radius: 12px; padding: 14px 16px; margin: 14px 0; }
-    footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid rgba(127,127,127,.25); opacity: .85; font-size: 13px; }
-    a { color: inherit; }
-  </style>
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+  @vite('resources/css/public.css')
 </head>
 
 <body>
@@ -28,7 +17,7 @@
       <p class="meta"><strong>Munchi</strong> (munchiapp.co) &middot; <strong>Effective date:</strong> December 24, 2025</p>
     </header>
 
-    <section class="card">
+    <section class="card card-block">
       <p>
         These Terms of Service (“Terms”) govern your access to and use of the Munchi website and web application
         available at <strong>munchiapp.co</strong> (the “Service”). By accessing or using the Service, you agree to be bound by these Terms.
@@ -129,7 +118,7 @@
       </p>
     </section>
 
-    <section class="card">
+    <section class="card card-block">
       <h2 style="margin-top:0;">11) Contact</h2>
       <p style="margin:0;">
         If you have questions about these Terms, contact us at:<br />
