@@ -273,5 +273,13 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+
+        <footer class="border-t border-[#1b1b18]/10 dark:border-[#fffaed]/10">
+            <div class="mx-auto flex max-w-7xl items-center justify-center gap-6 px-6 py-6 text-sm text-[#1b1b18]/70 dark:text-[#fffaed]/70">
+                <a class="transition hover:text-[#1b1b18] dark:hover:text-[#fffaed]" href="/privacy">Privacy</a>
+                <a class="transition hover:text-[#1b1b18] dark:hover:text-[#fffaed]" href="/terms">Terms</a>
+                <a class="transition hover:text-[#1b1b18] dark:hover:text-[#fffaed]" href="/contact">Contact</a>
+            </div>
+        </footer>
     </body>
 </html>
