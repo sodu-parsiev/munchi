@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Privacy Policy - Munchi</title>
+  <title>Terms of Service - Munchi</title>
   <meta name="robots" content="index,follow" />
   <style>
     :root { color-scheme: light dark; }
@@ -16,125 +16,123 @@
     p, li { font-size: 15px; }
     ul { margin: 8px 0 0 18px; padding: 0; }
     .card { border: 1px solid rgba(127,127,127,.25); border-radius: 12px; padding: 14px 16px; margin: 14px 0; }
-    a { color: inherit; }
     footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid rgba(127,127,127,.25); opacity: .85; font-size: 13px; }
+    a { color: inherit; }
   </style>
 </head>
 
 <body>
   <main class="wrap">
     <header>
-      <h1>Privacy Policy</h1>
+      <h1>Terms of Service</h1>
       <p class="meta"><strong>Munchi</strong> (munchiapp.co) &middot; <strong>Effective date:</strong> December 24, 2025</p>
     </header>
 
     <section class="card">
       <p>
-        Munchi (&ldquo;we&rdquo;, &ldquo;us&rdquo;) operates the website and web application at <strong>munchiapp.co</strong> (the &ldquo;Service&rdquo;).
-        This Privacy Policy explains what information we collect, how we use it, and the choices you have.
+        These Terms of Service (“Terms”) govern your access to and use of the Munchi website and web application
+        available at <strong>munchiapp.co</strong> (the “Service”). By accessing or using the Service, you agree to be bound by these Terms.
       </p>
     </section>
 
     <section>
-      <h2>1) Information we collect</h2>
-      <p>We may collect:</p>
+      <h2>1) The Service</h2>
+      <p>
+        Munchi is a web-based application that allows users to earn and use in-app points and features.
+        The Service may include optional third-party rewarded offers provided by external partners.
+      </p>
+    </section>
+
+    <section>
+      <h2>2) Eligibility</h2>
       <ul>
-        <li><strong>Account information:</strong> email address, username (if provided), and an internal user ID.</li>
-        <li><strong>Usage and technical information:</strong> pages/screens you visit, actions you take, device and browser details, IP address, approximate location (city/country), language settings, and referrer/UTM parameters.</li>
-        <li><strong>Cookies and similar technologies:</strong> cookies/local storage for login sessions, security, preferences, and (if enabled) analytics.</li>
-        <li><strong>Rewarded offers / advertising tracking:</strong> if you choose to use rewarded offers (for example, to earn points), third-party offer providers and advertisers may collect information to track offer completion and prevent fraud. This can include device identifiers, IP address, and cookie-based identifiers.</li>
+        <li>You must be at least <strong>13 years old</strong> to use the Service.</li>
+        <li>If an offer has additional age or regional requirements, you must meet those requirements to participate.</li>
+        <li>By using the Service, you confirm that you are legally allowed to do so in your jurisdiction.</li>
       </ul>
     </section>
 
     <section>
-      <h2>2) How we use your information</h2>
+      <h2>3) Accounts</h2>
       <ul>
-        <li>Provide and operate the Service (login, account, and core features).</li>
-        <li>Maintain security, prevent abuse, and detect fraud.</li>
-        <li>Track points/rewards where applicable.</li>
-        <li>Monitor performance, debug issues, and improve the Service.</li>
-        <li>Respond to support requests and communicate important updates.</li>
+        <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
+        <li>You agree to provide accurate and up-to-date information.</li>
+        <li>You are responsible for all activity that occurs under your account.</li>
       </ul>
     </section>
 
     <section>
-      <h2>3) Rewarded offers and third parties (AdGem)</h2>
-      <p>
-        Munchi may display third-party rewarded offers powered by <strong>AdGem</strong> and its advertising partners.
-        If you interact with offers:
-      </p>
+      <h2>4) Points, rewards, and offers</h2>
       <ul>
-        <li>We may send a <strong>non-sensitive identifier</strong> such as your internal user ID (and optional tracking parameters like &ldquo;subid&rdquo;) to attribute rewards to your account.</li>
-        <li>AdGem/advertisers may collect information needed to verify completion, detect fraud, and provide the offer experience.</li>
-        <li>Each offer may be subject to the third party&rsquo;s own terms and privacy policies.</li>
+        <li>Points or rewards earned in Munchi are for <strong>in-app use only</strong> and have no cash value unless explicitly stated.</li>
+        <li>Points may be earned by completing actions or third-party offers.</li>
+        <li>Third-party offers are operated and verified by external providers (such as AdGem and their advertisers).</li>
+        <li>Completion of an offer is subject to verification by the offer provider, not Munchi.</li>
+        <li>Rewards may appear as pending, delayed, reversed, or denied based on advertiser validation.</li>
       </ul>
       <p>
-        We do not control how third parties process data on their platforms. Please review their policies when you leave our Service.
+        <strong>Reward credit is not guaranteed.</strong> We reserve the right to revoke or adjust points in cases of fraud,
+        abuse, chargebacks, duplicated accounts, or violation of offer requirements.
       </p>
     </section>
 
     <section>
-      <h2>4) When we share information</h2>
-      <p>We may share information:</p>
+      <h2>5) Prohibited activities</h2>
+      <p>You agree not to:</p>
       <ul>
-        <li>With service providers that help us run the Service (hosting, logging, analytics, email delivery).</li>
-        <li>With offer/advertising partners only as needed for attribution, fraud prevention, and reward verification.</li>
-        <li>If required by law, legal process, or to protect rights, safety, and security.</li>
-        <li>In connection with a business transaction (e.g., merger or acquisition), where allowed by law.</li>
-      </ul>
-      <p><strong>We do not sell your personal information.</strong></p>
-    </section>
-
-    <section>
-      <h2>5) Data retention</h2>
-      <p>
-        We keep information only as long as needed to operate the Service and meet legal/accounting needs. For example:
-      </p>
-      <ul>
-        <li>Account data is kept while your account is active.</li>
-        <li>Security and event logs may be retained for up to <strong>12 months</strong> (or longer if needed for fraud investigations or legal obligations).</li>
+        <li>Use bots, scripts, emulators, or automated systems to access the Service.</li>
+        <li>Use VPNs, proxies, or other methods to manipulate offers or rewards.</li>
+        <li>Create multiple accounts to gain unfair rewards.</li>
+        <li>Provide false or misleading information when completing offers.</li>
+        <li>Attempt to interfere with tracking, attribution, or fraud-prevention systems.</li>
       </ul>
     </section>
 
     <section>
-      <h2>6) Your choices and rights</h2>
+      <h2>6) Third-party services</h2>
       <p>
-        Depending on where you live, you may have rights to request access, correction, or deletion of personal data.
-        To make a request, contact us at the email below. We may need to verify your identity.
+        The Service may contain links to or integrations with third-party websites, services, or offers.
+        We do not control and are not responsible for third-party content, availability, or practices.
+        Your interaction with third-party services is governed by their own terms and policies.
       </p>
     </section>
 
     <section>
-      <h2>7) Cookies</h2>
+      <h2>7) Suspension and termination</h2>
       <p>
-        You can control cookies through your browser settings. If you disable cookies, some features (like login/session) may not work properly.
+        We may suspend or terminate your access to the Service at any time, with or without notice, if we believe you have
+        violated these Terms or engaged in fraudulent or abusive behavior.
       </p>
     </section>
 
     <section>
-      <h2>8) Security</h2>
+      <h2>8) Disclaimer</h2>
       <p>
-        We use reasonable technical and organizational measures to protect information. However, no system is 100% secure.
+        The Service is provided on an “as is” and “as available” basis. We make no warranties of any kind,
+        express or implied, regarding the availability, reliability, or accuracy of the Service or rewards.
       </p>
     </section>
 
     <section>
-      <h2>9) Children</h2>
+      <h2>9) Limitation of liability</h2>
       <p>
-        The Service is not intended for children under <strong>13</strong>. If you believe a child has provided us personal information, contact us so we can delete it.
+        To the maximum extent permitted by law, Munchi shall not be liable for any indirect, incidental,
+        special, consequential, or punitive damages arising from your use of the Service or third-party offers.
       </p>
     </section>
 
     <section>
-      <h2>10) Changes to this policy</h2>
+      <h2>10) Changes to the Terms</h2>
       <p>
-        We may update this Privacy Policy from time to time. We will post the updated version on this page and update the effective date.
+        We may update these Terms from time to time. Continued use of the Service after changes are posted
+        constitutes acceptance of the updated Terms.
       </p>
     </section>
 
     <section class="card">
       <h2 style="margin-top:0;">11) Contact</h2>
       <p style="margin:0;">
+        If you have questions about these Terms, contact us at:<br />
         Email: <a href="mailto:support@munchiapp.co">support@munchiapp.co</a><br />
         Website: <a href="https://munchiapp.co">munchiapp.co</a>
       </p>
