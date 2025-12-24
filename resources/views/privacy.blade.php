@@ -129,13 +129,7 @@
       </p>
     </section>
 
-    <footer>
-      &copy; <span id="y"></span> Munchi. All rights reserved.
-    </footer>
+    @include('partials.footer')
   </main>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>

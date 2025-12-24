@@ -159,9 +159,12 @@ a {
 
 .site-footer {
   border-top: 1px solid var(--color-border);
+  margin-top: 28px;
   padding: 18px 20px;
   text-align: center;
   background: var(--color-surface);
+  opacity: 0.85;
+  font-size: 13px;
 }
 
 .site-footer a {
@@ -215,14 +218,6 @@ label {
 ul {
   margin: 8px 0 0 18px;
   padding: 0;
-}
-
-footer {
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid var(--color-border-strong);
-  opacity: 0.85;
-  font-size: 13px;
 }
 
 .row {
