@@ -12,6 +12,7 @@
     </head>
     <body>
         <div class="page">
+            @include('partials.header')
             <main class="content">
                 <div class="container">
                     <div class="banner">

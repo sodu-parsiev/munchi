@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  @include('partials.header')
   <main class="wrap">
     <header>
       <h1>Terms of Service</h1>

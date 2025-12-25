@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  @include('partials.header')
   <main class="wrap wrap-narrow">
     <header>
       <h1>Contact</h1>
