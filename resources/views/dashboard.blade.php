@@ -30,6 +30,7 @@
                         <p class="note">Use points to unlock future in-app rewards.</p>
                         <form method="POST" action="{{ route('earn-points') }}">
                             @csrf
+                            @include('partials.captcha')
                             <button type="submit">Earn points</button>
                         </form>
                     </section>

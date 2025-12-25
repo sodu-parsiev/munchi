@@ -65,6 +65,8 @@
                                 >
                             </div>
 
+                            @include('partials.captcha')
+
                             <button type="submit" class="auth-button">Create account</button>
                         </form>
 

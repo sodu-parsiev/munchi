@@ -70,6 +70,9 @@
             <textarea id="message" name="message" placeholder="How can we help?">{{ old('message') }}</textarea>
           </div>
           <div>
+            @include('partials.captcha')
+          </div>
+          <div>
             <button type="submit">Send message</button>
           </div>
         </div>

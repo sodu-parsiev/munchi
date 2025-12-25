@@ -49,6 +49,8 @@
                                 @enderror
                             </div>
 
+                            @include('partials.captcha')
+
                             <button type="submit" class="auth-button">Sign in</button>
                         </form>
 
