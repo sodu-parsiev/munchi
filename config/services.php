@@ -36,7 +36,7 @@ return [
     ],
 
     'postback' => [
-        'shared_secret' => env('POSTBACK_SHARED_SECRET'),
+        'shared_secret' => env('ADGEM_POSTBACK_SHARED_SECRET'),
     ],
 
 ];
