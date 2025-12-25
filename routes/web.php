@@ -67,6 +67,14 @@ Route::post('/register', function (Request $request) {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::post('/logout', function (Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    })->name('logout');
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
