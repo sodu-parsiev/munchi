@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Support\CaptchaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,10 +17,16 @@ Route::get('/', function () {
 
 Route::view('/privacy', 'privacy');
 Route::view('/terms', 'terms');
-Route::view('/contact', 'contact');
+Route::get('/contact', function (Request $request, CaptchaService $captchaService) {
+    $captchaService->seed($request);
+
+    return view('contact');
+});
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
 
-Route::get('/login', function () {
+Route::get('/login', function (Request $request, CaptchaService $captchaService) {
+    $captchaService->seed($request);
+
     return view('auth.login');
 })->name('login');
 
@@ -38,9 +45,11 @@ Route::post('/login', function (Request $request) {
     return back()
         ->withErrors(['email' => 'The provided credentials do not match our records.'])
         ->onlyInput('email');
-});
+})->middleware('captcha');
 
-Route::get('/register', function () {
+Route::get('/register', function (Request $request, CaptchaService $captchaService) {
+    $captchaService->seed($request);
+
     return view('auth.register');
 })->name('register');
 
@@ -66,7 +75,7 @@ Route::post('/register', function (Request $request) {
     $request->session()->regenerate();
 
     return redirect('/dashboard');
-});
+})->middleware('captcha');
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', function (Request $request) {
@@ -77,7 +86,9 @@ Route::middleware('auth')->group(function () {
         return redirect('/');
     })->name('logout');
 
-    Route::get('/dashboard', function () {
+    Route::get('/dashboard', function (Request $request, CaptchaService $captchaService) {
+        $captchaService->seed($request);
+
         return view('dashboard');
     })->name('dashboard');
 
@@ -95,5 +106,5 @@ Route::middleware('auth')->group(function () {
             ]);
 
         return redirect('/dashboard')->with('status', 'Added 10 test points.');
-    })->name('earn-points');
+    })->middleware('captcha')->name('earn-points');
 });
