@@ -13,6 +13,7 @@
             @auth
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
+                    @include('partials.captcha')
                     <button type="submit" class="nav-link nav-button">Logout</button>
                 </form>
             @endauth
