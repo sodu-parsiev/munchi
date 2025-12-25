@@ -29,21 +29,16 @@ class PostbackController extends Controller
             ], 401);
         }
 
-        $validated = $request->validate([
-            'transaction_id' => ['required', 'string', 'max:255'],
-            'offer_id' => ['required', 'string', 'max:255'],
-            'goal_id' => ['required', 'string', 'max:255'],
-            'payout' => ['required', 'numeric', 'min:0'],
-            'click_datetime' => ['required', 'date'],
-        ]);
+        $payload = $request->all();
+        $clickDatetime = $request->input('click_datetime');
 
         $postback = Postback::create([
-            'transaction_id' => $validated['transaction_id'],
-            'offer_id' => $validated['offer_id'],
-            'goal_id' => $validated['goal_id'],
-            'payout' => $validated['payout'],
-            'click_datetime' => Carbon::parse($validated['click_datetime']),
-            'payload' => $request->all(),
+            'transaction_id' => $request->input('transaction_id'),
+            'offer_id' => $request->input('offer_id'),
+            'goal_id' => $request->input('goal_id'),
+            'payout' => $request->input('payout'),
+            'click_datetime' => $clickDatetime ? Carbon::parse($clickDatetime) : null,
+            'payload' => $payload,
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
         ]);
