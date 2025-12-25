@@ -26,7 +26,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 Configure your network or partner to send postbacks to:
 
 ```
-POST /postback
+POST /api/postback
 ```
 
 ### Authentication
