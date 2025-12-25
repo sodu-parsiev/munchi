@@ -30,8 +30,17 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             set -e
-            export APP_ENV=development
             cd /storage/www/app
+            if [ -f .env ]; then
+              if grep -q '^APP_ENV=' .env; then
+                sed -i 's/^APP_ENV=.*/APP_ENV=development/' .env
+              else
+                echo 'APP_ENV=development' >> .env
+              fi
+              set -a
+              . ./.env
+              set +a
+            fi
             git fetch origin master
             git checkout master
             git pull origin master
@@ -46,5 +55,4 @@ jobs:
             docker compose exec app php artisan migrate --force
             docker compose exec app php artisan config:clear
             docker compose exec app php artisan cache:clear
-
 
