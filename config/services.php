@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'postback' => [
+        'shared_secret' => env('POSTBACK_SHARED_SECRET'),
+    ],
+
 ];

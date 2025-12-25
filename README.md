@@ -21,6 +21,30 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Postback Integration
+
+Configure your network or partner to send postbacks to:
+
+```
+POST /postback
+```
+
+### Authentication
+
+Requests must include the `X-Postback-Secret` header matching the `POSTBACK_SHARED_SECRET` value in your `.env`.
+
+### Required Parameters
+
+Send these fields as form data or JSON:
+
+- `transaction_id` (string)
+- `offer_id` (string)
+- `goal_id` (string)
+- `payout` (numeric)
+- `click_datetime` (date/time string)
+
+Additional fields are accepted and stored as raw payload data.
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
