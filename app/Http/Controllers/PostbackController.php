@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Postback;
+use App\Models\PostbackMacro;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -42,6 +43,20 @@ class PostbackController extends Controller
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
         ]);
+
+        foreach ($request->all() as $key => $value) {
+            $normalizedValue = $value;
+
+            if (is_array($value) || is_object($value)) {
+                $normalizedValue = json_encode($value);
+            }
+
+            PostbackMacro::create([
+                'postback_id' => $postback->id,
+                'macro_name' => (string) $key,
+                'macro_value' => $normalizedValue,
+            ]);
+        }
 
         return response()->json([
             'status' => 'ok',
