@@ -30,6 +30,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             set -e
+            export APP_ENV=development
             cd /storage/www/app
             git fetch origin master
             git checkout master
@@ -45,6 +46,5 @@ jobs:
             docker compose exec app php artisan migrate --force
             docker compose exec app php artisan config:clear
             docker compose exec app php artisan cache:clear
-
 
 
