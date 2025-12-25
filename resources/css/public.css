@@ -189,6 +189,10 @@ a {
   gap: 12px;
 }
 
+.site-nav form {
+  margin: 0;
+}
+
 .nav-link {
   text-decoration: none;
   font-weight: 500;
@@ -196,6 +200,13 @@ a {
   padding: 6px 10px;
   border-radius: 999px;
   transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-button {
+  width: auto;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
 }
 
 .nav-link:hover {

@@ -10,6 +10,12 @@
             <a class="nav-link" href="{{ url('/privacy') }}">Privacy</a>
             <a class="nav-link" href="{{ url('/terms') }}">Terms</a>
             <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
+            @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="nav-link nav-button">Logout</button>
+                </form>
+            @endauth
         </nav>
     </div>
 </header>
