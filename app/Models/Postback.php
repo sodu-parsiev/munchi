@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Postback extends Model
 {
@@ -22,4 +23,9 @@ class Postback extends Model
         'payload' => 'array',
         'payout' => 'decimal:2',
     ];
+
+    public function macros(): HasMany
+    {
+        return $this->hasMany(PostbackMacro::class);
+    }
 }
