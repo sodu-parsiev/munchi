@@ -23,21 +23,17 @@
                         <h1>Munchi</h1>
                         <p>Earn points, unlock in-app benefits</p>
                         <p class="note note-spacing">Optional third-party rewarded offers (AdGem/partners)</p>
-                        <div class="cta-row">
-                            @if (Route::has('register'))
-                                <a class="cta cta-primary" href="{{ route('register') }}">Get started</a>
-                            @else
-                                <!-- TODO: Update register link once auth routes are available. -->
-                                <a class="cta cta-primary" href="#">Get started</a>
-                            @endif
+                        @if(!Auth::check())
+                            <div class="cta-row">
+                                @if (Route::has('register'))
+                                    <a class="cta cta-primary" href="{{ route('register') }}">Get started</a>
+                                @endif
 
-                            @if (Route::has('login'))
-                                <a class="cta cta-secondary" href="{{ route('login') }}">Sign in</a>
-                            @else
-                                <!-- TODO: Update login link once auth routes are available. -->
-                                <a class="cta cta-secondary" href="#">Sign in</a>
-                            @endif
-                        </div>
+                                @if (Route::has('login'))
+                                    <a class="cta cta-secondary" href="{{ route('login') }}">Sign in</a>
+                                @endif
+                            </div>
+                        @endif
                     </section>
 
                     <section class="card">
