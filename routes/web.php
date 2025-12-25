@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PostbackController;
 use App\Support\CaptchaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,8 @@ Route::get('/contact', function (Request $request, CaptchaService $captchaServic
     return view('contact');
 });
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
+
+Route::post('/postback', [PostbackController::class, 'handle'])->name('postback.handle');
 
 Route::get('/login', function (Request $request, CaptchaService $captchaService) {
     $captchaService->seed($request);
