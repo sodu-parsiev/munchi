@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ Route::get('/', function () {
 Route::view('/privacy', 'privacy');
 Route::view('/terms', 'terms');
 Route::view('/contact', 'contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
 
 Route::get('/login', function () {
     return view('auth.login');

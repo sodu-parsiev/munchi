@@ -39,20 +39,35 @@
 
     <section class="card card-block">
       <h2 style="margin-top:0;">Send us a message</h2>
-      <!-- Replace action with your Laravel route if you enable the form -->
-      <form method="post" action="#" novalidate>
+      @if (session('status'))
+        <p style="margin-bottom:16px; color:#0f5132; background:#d1e7dd; padding:12px; border-radius:8px;">
+          {{ session('status') }}
+        </p>
+      @endif
+      @if ($errors->any())
+        <div style="margin-bottom:16px; color:#842029; background:#f8d7da; padding:12px; border-radius:8px;">
+          <p style="margin-top:0; font-weight:600;">Please correct the errors below:</p>
+          <ul style="margin:0; padding-left:20px;">
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+      <form method="post" action="{{ route('contact.submit') }}" novalidate>
+        @csrf
         <div class="row">
           <div>
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" />
+            <input id="name" name="name" type="text" placeholder="Your name" value="{{ old('name') }}" />
           </div>
           <div>
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" />
+            <input id="email" name="email" type="email" placeholder="you@example.com" value="{{ old('email') }}" />
           </div>
           <div>
             <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="How can we help?"></textarea>
+            <textarea id="message" name="message" placeholder="How can we help?">{{ old('message') }}</textarea>
           </div>
           <div>
             <button type="submit">Send message</button>
