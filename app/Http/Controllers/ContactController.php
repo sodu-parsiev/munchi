@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContactMessage;
+use App\Services\ContactMessageService;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function __construct(
+        private readonly ContactMessageService $contactMessageService
+    ) {
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -24,11 +29,7 @@ class ContactController extends Controller
             ],
         ]);
 
-        ContactMessage::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'message' => $validated['message'],
-        ]);
+        $this->contactMessageService->create($validated);
 
         return back()->with('status', 'Thanks for reaching out! We received your message.');
     }
