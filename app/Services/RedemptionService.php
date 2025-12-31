@@ -14,12 +14,13 @@ class RedemptionService
     public function redeem(
         User $user,
         RewardVariant $rewardVariant,
-        float $pointsSpent,
         string $status = 'pending',
         ?string $externalReference = null
     ): Redemption {
-        if ($pointsSpent <= 0) {
-            throw new RuntimeException('Points spent must be greater than zero.');
+        $amount = (float) $rewardVariant->price;
+
+        if ($amount <= 0) {
+            throw new RuntimeException('Reward variant price must be greater than zero.');
         }
 
         $wallet = $user->wallet;
@@ -28,10 +29,10 @@ class RedemptionService
             throw new RuntimeException('User does not have an active wallet.');
         }
 
-        return DB::transaction(function () use ($wallet, $user, $rewardVariant, $pointsSpent, $status, $externalReference) {
+        return DB::transaction(function () use ($wallet, $user, $rewardVariant, $amount, $status, $externalReference) {
             $lockedWallet = $this->lockWallet($wallet);
             $currentBalance = (float) $lockedWallet->balance;
-            $amount = round($pointsSpent, 2);
+            $amount = round($amount, 2);
 
             if ($currentBalance < $amount) {
                 throw new RuntimeException('Insufficient wallet balance.');
