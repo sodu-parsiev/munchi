@@ -20,7 +20,6 @@ class RedemptionController extends Controller
         $validated = $request->validate([
             'user_id' => ['required', 'exists:users,id'],
             'reward_variant_id' => ['required', 'exists:reward_variants,id'],
-            'points_spent' => ['required', 'numeric', 'min:0.01'],
             'status' => ['nullable', 'string'],
             'external_reference' => ['nullable', 'string'],
         ]);
@@ -31,14 +30,14 @@ class RedemptionController extends Controller
         $redemption = $this->redemptionService->redeem(
             $user,
             $rewardVariant,
-            (float) $validated['points_spent'],
             $validated['status'] ?? 'pending',
             $validated['external_reference'] ?? null
         );
 
         return response()->json([
             'status' => 'ok',
-            'redemption' => $redemption,
+            'redemption' => $redemption->load('rewardVariant.reward'),
+            'wallet_balance' => $user->wallet?->balance,
         ], 201);
     }
 }
