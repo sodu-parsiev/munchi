@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RewardVariant extends Model
 {
@@ -28,5 +29,10 @@ class RewardVariant extends Model
     public function reward(): BelongsTo
     {
         return $this->belongsTo(Reward::class);
+    }
+
+    public function redemptions(): HasMany
+    {
+        return $this->hasMany(Redemption::class);
     }
 }
