@@ -39,4 +39,13 @@ return [
         'shared_secret' => env('ADGEM_POSTBACK_SHARED_SECRET'),
     ],
 
+    'adgem' => [
+        'base_url' => env('ADGEM_BASE_URL', 'https://api.adgem.com/v1'),
+        'offers_path' => env('ADGEM_OFFERS_PATH', '/offers'),
+        'publisher_id' => env('ADGEM_PUBLISHER_ID'),
+        'api_key' => env('ADGEM_API_KEY'),
+        'secret' => env('ADGEM_SECRET'),
+        'timeout' => env('ADGEM_TIMEOUT', 10),
+    ],
+
 ];
