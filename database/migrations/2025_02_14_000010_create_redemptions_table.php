@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('redemptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->index();
-            $table->foreignId('reward_variant_id')->constrained()->cascadeOnDelete()->index();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('reward_variant_id')->constrained()->cascadeOnDelete();
             $table->decimal('points_spent', 12, 2);
-            $table->string('status');
+            $table->string('status')->index();
             $table->string('external_reference')->nullable();
             $table->timestamps();
-
-            $table->index('status');
         });
     }
 
