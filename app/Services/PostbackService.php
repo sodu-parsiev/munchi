@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Models\Postback;
+use InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
 
 class PostbackService
 {
@@ -16,14 +16,16 @@ class PostbackService
 
     public function createFromRequest(Request $request, string $provider = 'theoremreach'): Postback
     {
+        $this->validateRequiredFields($request, $provider);
+
         $payload = $request->all();
         $payload['_provider'] = $provider;
 
         $postback = new Postback();
-        $postback->transaction_id = $this->input($request, $provider, 'transaction_id') ?? (string) Str::uuid();
-        $postback->offer_id = $this->input($request, $provider, 'offer_id') ?? 'unknown';
-        $postback->goal_id = $this->input($request, $provider, 'goal_id') ?? 'unknown';
-        $postback->payout = $this->input($request, $provider, 'payout') ?? 0;
+        $postback->transaction_id = $this->input($request, $provider, 'transaction_id');
+        $postback->offer_id = $this->input($request, $provider, 'offer_id');
+        $postback->goal_id = $this->input($request, $provider, 'goal_id');
+        $postback->payout = $this->input($request, $provider, 'payout');
 
         $clickDatetime = $this->input($request, $provider, 'click_datetime');
         $postback->click_datetime = $clickDatetime ? Carbon::parse($clickDatetime) : now();
@@ -36,6 +38,28 @@ class PostbackService
         $this->postbackMacroService->createForPostback($postback, $payload);
 
         return $postback;
+    }
+
+    private function validateRequiredFields(Request $request, string $provider): void
+    {
+        $requiredFields = [
+            'transaction_id',
+            'offer_id',
+            'goal_id',
+            'payout',
+        ];
+
+        $missingFields = [];
+
+        foreach ($requiredFields as $field) {
+            if ($this->input($request, $provider, $field) === null) {
+                $missingFields[] = $field;
+            }
+        }
+
+        if ($missingFields !== []) {
+            throw new InvalidArgumentException('Missing required postback fields: '.implode(', ', $missingFields));
+        }
     }
 
     private function input(Request $request, string $provider, string $field): mixed

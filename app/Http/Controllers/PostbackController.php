@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\PostbackService;
+use InvalidArgumentException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,14 @@ class PostbackController extends Controller
             ], 401);
         }
 
-        $postback = $this->postbackService->createFromRequest($request, $provider);
+        try {
+            $postback = $this->postbackService->createFromRequest($request, $provider);
+        } catch (InvalidArgumentException $exception) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $exception->getMessage(),
+            ], 422);
+        }
 
         return response()->json([
             'status' => 'ok',
