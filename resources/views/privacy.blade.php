@@ -48,14 +48,14 @@
     </section>
 
     <section>
-      <h2>3) Rewarded offers and third parties (AdGem)</h2>
+      <h2>3) Rewarded offers and third parties (AdGem and TheoremReach)</h2>
       <p>
-        Munchi may display third-party rewarded offers powered by <strong>AdGem</strong> and its advertising partners.
+        Munchi may display third-party rewarded offers powered by <strong>AdGem</strong>, <strong>TheoremReach</strong>, and their advertising partners.
         If you interact with offers:
       </p>
       <ul>
         <li>We may send a <strong>non-sensitive identifier</strong> such as your internal user ID (and optional tracking parameters like “subid”) to attribute rewards to your account.</li>
-        <li>AdGem/advertisers may collect information needed to verify completion, detect fraud, and provide the offer experience.</li>
+        <li>AdGem, TheoremReach, and their advertisers may collect information needed to verify completion, detect fraud, and provide the offer experience.</li>
         <li>Each offer may be subject to the third party’s own terms and privacy policies.</li>
       </ul>
       <p>

@@ -13,9 +13,9 @@ class PostbackController extends Controller
     ) {
     }
 
-    public function handle(Request $request): JsonResponse
+    public function handle(Request $request, string $provider = 'adgem'): JsonResponse
     {
-        $expectedSecret = config('services.postback.shared_secret');
+        $expectedSecret = $this->expectedSecret($provider);
 
         if (! $expectedSecret) {
             return response()->json([
@@ -33,11 +33,20 @@ class PostbackController extends Controller
             ], 401);
         }
 
-        $postback = $this->postbackService->createFromRequest($request);
+        $postback = $this->postbackService->createFromRequest($request, $provider);
 
         return response()->json([
             'status' => 'ok',
+            'provider' => $provider,
             'postback_id' => $postback->id,
         ]);
+    }
+
+    private function expectedSecret(string $provider): ?string
+    {
+        return match ($provider) {
+            'theoremreach' => config('services.theoremreach.postback_secret'),
+            default => config('services.postback.shared_secret') ?: config('services.adgem.postback_secret'),
+        };
     }
 }

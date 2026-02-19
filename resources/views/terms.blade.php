@@ -56,7 +56,7 @@
       <ul>
         <li>Points or rewards earned in Munchi are for <strong>in-app use only</strong> and have no cash value unless explicitly stated.</li>
         <li>Points may be earned by completing actions or third-party offers.</li>
-        <li>Third-party offers are operated and verified by external providers (such as AdGem and their advertisers).</li>
+        <li>Third-party offers are operated and verified by external providers (such as AdGem, TheoremReach, and their advertisers).</li>
         <li>Completion of an offer is subject to verification by the offer provider, not Munchi.</li>
         <li>Rewards may appear as pending, delayed, reversed, or denied based on advertiser validation.</li>
       </ul>
