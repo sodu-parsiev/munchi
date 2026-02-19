@@ -46,13 +46,13 @@ jobs:
             git pull origin master
 
             cd docker
-            docker compose up -d --build
+            docker compose up -d
 
             docker run --rm -v /storage/www/app:/app -w /app composer:2 install --no-dev --optimize-autoloader
 
             docker run --rm -v /storage/www/app:/app -w /app node:20-alpine sh -c "npm install && npm run build"
 
-            docker compose exec app php artisan migrate --force
+            docker compose exec app php artisan migrate
             docker compose exec app php artisan config:clear
             docker compose exec app php artisan cache:clear
 
