@@ -127,4 +127,53 @@ class PostbackTest extends TestCase
             'payout' => '4.25',
         ]);
     }
+
+    public function test_it_rejects_postbacks_with_missing_required_fields(): void
+    {
+        config(['services.theoremreach.postback_secret' => 'expected-secret']);
+
+        $response = $this->withHeaders([
+            'X-Postback-Secret' => 'expected-secret',
+        ])->postJson('/api/postback', [
+            'transaction_id' => 'txn-123',
+            'offer_id' => 'offer-456',
+        ]);
+
+        $response->assertStatus(422)->assertJson([
+            'status' => 'error',
+            'message' => 'Missing required postback fields: goal_id, payout',
+        ]);
+
+        $this->assertDatabaseCount('postbacks', 0);
+        $this->assertDatabaseCount('postback_macros', 0);
+    }
+
+    public function test_it_rejects_mapped_postbacks_with_missing_required_fields(): void
+    {
+        config([
+            'services.theoremreach.postback_secret' => 'theoremreach-secret',
+            'services.theoremreach.postback_field_map' => [
+                'transaction_id' => 'conversion_id',
+                'offer_id' => 'campaign_id',
+                'goal_id' => 'event_id',
+                'payout' => 'reward_amount',
+            ],
+        ]);
+
+        $response = $this->withHeaders([
+            'X-Postback-Secret' => 'theoremreach-secret',
+        ])->postJson('/api/postback/theoremreach', [
+            'conversion_id' => 'trx-001',
+            'campaign_id' => 'cmp-123',
+            'event_id' => 'goal-8',
+        ]);
+
+        $response->assertStatus(422)->assertJson([
+            'status' => 'error',
+            'message' => 'Missing required postback fields: payout',
+        ]);
+
+        $this->assertDatabaseCount('postbacks', 0);
+        $this->assertDatabaseCount('postback_macros', 0);
+    }
 }
