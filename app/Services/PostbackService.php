@@ -14,7 +14,7 @@ class PostbackService
     ) {
     }
 
-    public function createFromRequest(Request $request, string $provider = 'adgem'): Postback
+    public function createFromRequest(Request $request, string $provider = 'theoremreach'): Postback
     {
         $payload = $request->all();
         $payload['_provider'] = $provider;

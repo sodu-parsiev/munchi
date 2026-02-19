@@ -22,7 +22,7 @@
                     <section class="card hero">
                         <h1>Munchi</h1>
                         <p>Earn points, unlock in-app benefits</p>
-                        <p class="note note-spacing">Optional third-party rewarded offers (AdGem, TheoremReach, and partners)</p>
+                        <p class="note note-spacing">Optional third-party rewarded offers (TheoremReach/partners)</p>
                         @if(!Auth::check())
                             <div class="cta-row">
                                 @if (Route::has('register'))

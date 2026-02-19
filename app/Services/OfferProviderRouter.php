@@ -15,7 +15,6 @@ class OfferProviderRouter
     public function __construct()
     {
         $this->providerMap = [
-            'adgem' => AdGemOfferService::class,
             'theoremreach' => TheoremReachOfferService::class,
         ];
     }

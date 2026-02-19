@@ -13,7 +13,7 @@ class PostbackController extends Controller
     ) {
     }
 
-    public function handle(Request $request, string $provider = 'adgem'): JsonResponse
+    public function handle(Request $request, string $provider = 'theoremreach'): JsonResponse
     {
         $expectedSecret = $this->expectedSecret($provider);
 
@@ -46,7 +46,7 @@ class PostbackController extends Controller
     {
         return match ($provider) {
             'theoremreach' => config('services.theoremreach.postback_secret'),
-            default => config('services.postback.shared_secret') ?: config('services.adgem.postback_secret'),
+            default => null,
         };
     }
 }

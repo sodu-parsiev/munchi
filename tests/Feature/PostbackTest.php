@@ -12,7 +12,7 @@ class PostbackTest extends TestCase
 
     public function test_it_requires_postback_authentication_configuration(): void
     {
-        config(['services.postback.shared_secret' => null]);
+        config(['services.theoremreach.postback_secret' => null]);
 
         $response = $this->postJson('/api/postback', []);
 
@@ -24,7 +24,7 @@ class PostbackTest extends TestCase
 
     public function test_it_rejects_requests_with_invalid_secret(): void
     {
-        config(['services.postback.shared_secret' => 'expected-secret']);
+        config(['services.theoremreach.postback_secret' => 'expected-secret']);
 
         $response = $this->postJson('/api/postback', [], [
             'X-Postback-Secret' => 'wrong-secret',
@@ -39,9 +39,9 @@ class PostbackTest extends TestCase
         $this->assertDatabaseCount('postback_macros', 0);
     }
 
-    public function test_it_persists_postback_and_macros(): void
+    public function test_it_persists_theoremreach_postback_and_macros(): void
     {
-        config(['services.postback.shared_secret' => 'expected-secret']);
+        config(['services.theoremreach.postback_secret' => 'expected-secret']);
 
         $payload = [
             'transaction_id' => 'txn-123',
@@ -63,7 +63,7 @@ class PostbackTest extends TestCase
 
         $response->assertOk()->assertJson([
             'status' => 'ok',
-            'provider' => 'adgem',
+            'provider' => 'theoremreach',
         ]);
 
         $postback = Postback::query()->first();
@@ -76,7 +76,7 @@ class PostbackTest extends TestCase
         $this->assertSame('2024-01-02 03:04:05', $postback->click_datetime->format('Y-m-d H:i:s'));
         $this->assertSame('203.0.113.10', $postback->ip_address);
         $this->assertSame('Postback Test Agent', $postback->user_agent);
-        $this->assertSame('adgem', $postback->payload['_provider']);
+        $this->assertSame('theoremreach', $postback->payload['_provider']);
 
         $this->assertDatabaseHas('postback_macros', [
             'postback_id' => $postback->id,
@@ -90,7 +90,7 @@ class PostbackTest extends TestCase
         ]);
     }
 
-    public function test_it_supports_theoremreach_postbacks(): void
+    public function test_it_supports_theoremreach_postbacks_with_field_mapping(): void
     {
         config([
             'services.theoremreach.postback_secret' => 'theoremreach-secret',

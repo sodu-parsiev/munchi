@@ -8,6 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/me', [MeController::class, 'show'])->name('me.show');
 Route::post('/postback', [PostbackController::class, 'handle'])->name('postback.handle');
-Route::post('/postback/{provider}', [PostbackController::class, 'handle'])->whereIn('provider', ['adgem', 'theoremreach'])->name('postback.provider.handle');
+Route::post('/postback/{provider}', [PostbackController::class, 'handle'])->whereIn('provider', ['theoremreach'])->name('postback.provider.handle');
 Route::post('/redemptions', [RedemptionController::class, 'store'])->name('redemptions.store');
 Route::get('/rewards', [RewardController::class, 'index'])->name('rewards.index');
