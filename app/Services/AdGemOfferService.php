@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
+use App\Services\Interfaces\OfferProvider;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class AdGemOfferService
+class AdGemOfferService implements OfferProvider
 {
     public function fetchOffers(string $userId, array $identifiers = [], array $options = []): array
     {
