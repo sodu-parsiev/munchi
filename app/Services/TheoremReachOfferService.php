@@ -7,25 +7,22 @@ use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class AdGemOfferService implements OfferProvider
+class TheoremReachOfferService implements OfferProvider
 {
     public function fetchOffers(string $userId, array $identifiers = [], array $options = []): array
     {
-        $publisherId = config('services.adgem.publisher_id');
-        $apiKey = config('services.adgem.api_key');
-        $secret = config('services.adgem.secret');
+        $apiKey = config('services.theoremreach.api_key');
+        $secret = config('services.theoremreach.secret');
 
-        if (!$publisherId || !$apiKey) {
-            Log::warning('AdGem offers request skipped due to missing credentials.', [
-                'publisher_id_configured' => (bool) $publisherId,
-                'api_key_configured' => (bool) $apiKey,
+        if (! $apiKey) {
+            Log::warning('TheoremReach offers request skipped due to missing credentials.', [
+                'api_key_configured' => false,
             ]);
 
-            return ['error' => 'Missing AdGem credentials.'];
+            return ['error' => 'Missing TheoremReach credentials.'];
         }
 
         $params = array_merge([
-            'publisher_id' => $publisherId,
             'api_key' => $apiKey,
             'user_id' => $userId,
         ], $identifiers);
@@ -33,13 +30,13 @@ class AdGemOfferService implements OfferProvider
         if ($secret) {
             $params['signature'] = $this->signRequest($params, $secret);
         } else {
-            Log::warning('AdGem offers request sent without signing secret.');
+            Log::warning('TheoremReach offers request sent without signing secret.');
         }
 
         $url = $this->offersUrl();
 
         try {
-            $response = Http::timeout($options['timeout'] ?? config('services.adgem.timeout', 10))
+            $response = Http::timeout($options['timeout'] ?? config('services.theoremreach.timeout', 10))
                 ->acceptJson()
                 ->get($url, $params);
 
@@ -47,7 +44,7 @@ class AdGemOfferService implements OfferProvider
 
             return $response->json();
         } catch (RequestException $exception) {
-            Log::error('AdGem offers request failed.', [
+            Log::error('TheoremReach offers request failed.', [
                 'url' => $url,
                 'params' => $params,
                 'status' => optional($exception->response)->status(),
@@ -55,7 +52,7 @@ class AdGemOfferService implements OfferProvider
                 'message' => $exception->getMessage(),
             ]);
 
-            return ['error' => 'Unable to fetch AdGem offers.'];
+            return ['error' => 'Unable to fetch TheoremReach offers.'];
         }
     }
 
@@ -68,8 +65,8 @@ class AdGemOfferService implements OfferProvider
 
     private function offersUrl(): string
     {
-        $baseUrl = rtrim(config('services.adgem.base_url', 'https://api.adgem.com/v1'), '/');
-        $path = ltrim(config('services.adgem.offers_path', '/offers'), '/');
+        $baseUrl = rtrim(config('services.theoremreach.base_url', 'https://api.theoremreach.com'), '/');
+        $path = ltrim(config('services.theoremreach.offers_path', '/api/v1/offers'), '/');
 
         return $baseUrl.'/'.$path;
     }

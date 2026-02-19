@@ -31,7 +31,7 @@ POST /api/postback
 
 ### Authentication
 
-Requests must include the `X-Postback-Secret` header matching the `POSTBACK_SHARED_SECRET` value in your `.env`.
+Requests must include the `X-Postback-Secret` header matching the `THEOREMREACH_POSTBACK_SHARED_SECRET` value in your `.env`.
 
 ### Required Parameters
 
