@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\PostbackService;
+use InvalidArgumentException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class PostbackController extends Controller
     ) {
     }
 
-    public function handle(Request $request): JsonResponse
+    public function handle(Request $request, string $provider = 'theoremreach'): JsonResponse
     {
-        $expectedSecret = config('services.postback.shared_secret');
+        $expectedSecret = $this->expectedSecret($provider);
 
         if (! $expectedSecret) {
             return response()->json([
@@ -33,11 +34,27 @@ class PostbackController extends Controller
             ], 401);
         }
 
-        $postback = $this->postbackService->createFromRequest($request);
+        try {
+            $postback = $this->postbackService->createFromRequest($request, $provider);
+        } catch (InvalidArgumentException $exception) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $exception->getMessage(),
+            ], 422);
+        }
 
         return response()->json([
             'status' => 'ok',
+            'provider' => $provider,
             'postback_id' => $postback->id,
         ]);
+    }
+
+    private function expectedSecret(string $provider): ?string
+    {
+        return match ($provider) {
+            'theoremreach' => config('services.theoremreach.postback_secret'),
+            default => null,
+        };
     }
 }
